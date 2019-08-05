@@ -13,7 +13,11 @@ class TasksController < ApplicationController
     end
 
     def new
-        @task = Task.new
+        if logged_in?
+            @task = Task.new
+        else
+            redirect_to login_url
+        end
     end
 
     def create
